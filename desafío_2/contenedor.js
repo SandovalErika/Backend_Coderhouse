@@ -23,7 +23,12 @@ class Contenedor {
     }
 
     async deleteById(id){
-        Contenedor.lista.filter(element => element.id != id);
+        Contenedor.lista = Contenedor.lista.filter(element => element.id != id);
+        await this.write();
+    }
+
+    async deleteAll(){ 
+        Contenedor.lista = [];
         await this.write();
     }
     
@@ -34,6 +39,10 @@ class Contenedor {
 
     getAll(){
         return Contenedor.lista;
+    }
+
+    getById(id){
+        return Contenedor.lista.find(element => element.id == id);
     }
 
     async init(){
